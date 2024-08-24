@@ -37,6 +37,26 @@ public class Problem implements Serializable {
         this.op = op;
     }
 
+    // Method to compute the correct answer
+    public int getCorrectAnswer() {
+        switch (op) {
+            case "+":
+                return a + b;
+            case "-":
+                return a - b;
+            case "*":
+                return a * b;
+            case "/":
+                if (b != 0) {
+                    return a / b;
+                } else {
+                    throw new ArithmeticException("Division by zero");
+                }
+            default:
+                throw new IllegalArgumentException("Unknown operation: " + op);
+        }
+    }
+
     @Override
     public String toString() {
         return a + " " + op + " " + b;

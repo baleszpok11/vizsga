@@ -3,7 +3,6 @@ package com.example.vizsga;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onProblemClick(Problem problem) {
                         // Handle problem click event
                         Intent intent = new Intent(MainActivity.this, ProblemDetailActivity.class);
-                        intent.putExtra("problem", problem);
+                        intent.putExtra("PROBLEM", problem);
                         startActivity(intent);
                     }
                 });
