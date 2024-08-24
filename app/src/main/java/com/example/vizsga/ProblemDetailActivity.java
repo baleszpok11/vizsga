@@ -25,19 +25,17 @@ public class ProblemDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_problem_detail);
 
         // Initialize views
-        problemTextView = findViewById(R.id.problem_text_view);
         answerEditText = findViewById(R.id.answer_edit_text);
-        submitButton = findViewById(R.id.submit_button);
 
-        // Get the data from the Intent
+        // Retrieve intent data
         Intent intent = getIntent();
-        problemText = intent.getStringExtra("PROBLEM");
-        correctAnswer = intent.getStringExtra("CORRECT_ANSWER");
+        correctAnswer = intent.getStringExtra("CORRECT_ANSWER"); // Retrieve the correct answer
+        if (correctAnswer == null) {
+            correctAnswer = ""; // Default to empty string if null
+        }
 
-        // Set the problem text
-        problemTextView.setText(problemText);
-
-        // Set a click listener for the submit button
+        // Set up the button click listener
+        Button submitButton = findViewById(R.id.submit_button);
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,14 +44,20 @@ public class ProblemDetailActivity extends AppCompatActivity {
         });
     }
 
+
     private void checkAnswer() {
         String userAnswer = answerEditText.getText().toString().trim();
 
+        // Log the user input and correct answer for debugging
+        System.out.println("User Answer: " + userAnswer);
+        System.out.println("Correct Answer: " + correctAnswer);
+
         // Check if the user's answer matches the correct answer
-        if (userAnswer.equals(correctAnswer)) {
+        if (correctAnswer != null && userAnswer.equals(correctAnswer.trim())) {
             Toast.makeText(this, "Correct!", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "Incorrect. Try again!", Toast.LENGTH_SHORT).show();
         }
     }
+
 }
