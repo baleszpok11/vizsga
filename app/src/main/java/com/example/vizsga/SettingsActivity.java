@@ -13,14 +13,12 @@ import java.util.Locale;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    private RadioGroup languageRadioGroup;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        languageRadioGroup = findViewById(R.id.radio_group_language);
+        RadioGroup languageRadioGroup = findViewById(R.id.radio_group_language);
 
         // Load saved language preference
         SharedPreferences prefs = getSharedPreferences("AppSettings", MODE_PRIVATE);
@@ -63,9 +61,7 @@ public class SettingsActivity extends AppCompatActivity {
         Configuration config = new Configuration();
         config.setLocale(locale);
 
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-            config.setLocales(new LocaleList(locale));
-        }
+        config.setLocales(new LocaleList(locale));
 
         getResources().updateConfiguration(config, getResources().getDisplayMetrics());
     }
