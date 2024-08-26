@@ -1,7 +1,6 @@
 package com.example.vizsga;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -13,8 +12,7 @@ public class ProblemDetailActivity extends AppCompatActivity {
     private TextView problemTextView;
     private EditText answerEditText;
     private Button submitButton;
-
-    private Problem problem;
+    private String correctAnswer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,41 +23,41 @@ public class ProblemDetailActivity extends AppCompatActivity {
         answerEditText = findViewById(R.id.answer_edit_text);
         submitButton = findViewById(R.id.submit_button);
 
-        // Retrieve Problem object from Intent
-        problem = (Problem) getIntent().getSerializableExtra("PROBLEM");
+        // Retrieve the Problem object passed from MainActivity
+        Problem problem = (Problem) getIntent().getSerializableExtra("problem");
 
         if (problem != null) {
+            // Display the problem
             problemTextView.setText(problem.toString());
+
+            // Calculate the correct answer based on the problem
+            correctAnswer = String.valueOf(problem.calculateAnswer());
+        } else {
+            Toast.makeText(this, "Problem data not found.", Toast.LENGTH_SHORT).show();
+            finish();
         }
 
-        // Handle the submit button click
-        submitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                checkAnswer();
-            }
-        });
+        submitButton.setOnClickListener(v -> checkAnswer());
     }
 
     private void checkAnswer() {
-        String userAnswerStr = answerEditText.getText().toString().trim();
+        String userAnswer = answerEditText.getText().toString().trim();
 
-        // Log the user input and correct answer for debugging
-        System.out.println("User Answer: " + userAnswerStr);
-        System.out.println("Correct Answer: " + problem.getCorrectAnswer());
+        if (correctAnswer != null) {
+            try {
+                double userAnswerDouble = Double.parseDouble(userAnswer);
+                double correctAnswerDouble = Double.parseDouble(correctAnswer.trim());
 
-        try {
-            int userAnswer = Integer.parseInt(userAnswerStr);
-            int correctAnswer = problem.getCorrectAnswer();
-
-            // Check if the user's answer matches the correct answer
-            if (userAnswer == correctAnswer) {
-                Toast.makeText(this, "Correct!", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, "Incorrect. Try again!", Toast.LENGTH_SHORT).show();
+                if (userAnswerDouble == correctAnswerDouble) {
+                    Toast.makeText(this, "Correct!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "Incorrect. Try again!", Toast.LENGTH_SHORT).show();
+                }
+            } catch (NumberFormatException e) {
+                Toast.makeText(this, "Please enter a valid number.", Toast.LENGTH_SHORT).show();
             }
-        } catch (NumberFormatException e) {
-            Toast.makeText(this, "Please enter a valid number.", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Answer could not be processed. Please reload the problem.", Toast.LENGTH_SHORT).show();
         }
     }
 }

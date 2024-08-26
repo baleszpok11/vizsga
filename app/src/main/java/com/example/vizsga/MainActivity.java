@@ -2,10 +2,10 @@ package com.example.vizsga;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -30,14 +30,12 @@ public class MainActivity extends AppCompatActivity {
                     public void onProblemClick(Problem problem) {
                         // Handle problem click event
                         Intent intent = new Intent(MainActivity.this, ProblemDetailActivity.class);
-                        intent.putExtra("PROBLEM", problem);
+                        intent.putExtra("problem", problem); // Make sure this key matches in ProblemDetailActivity
                         startActivity(intent);
                     }
                 });
                 recyclerView.setAdapter(problemAdapter);
             }
         });
-
-        // Setup sidebar menu and other UI elements
     }
 }

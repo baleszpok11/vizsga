@@ -38,7 +38,7 @@ public class Problem implements Serializable {
     }
 
     // Method to compute the correct answer
-    public int getCorrectAnswer() {
+    public int calculateAnswer() {
         switch (op) {
             case "+":
                 return a + b;
