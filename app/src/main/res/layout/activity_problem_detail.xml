@@ -1,30 +1,49 @@
-<!-- activity_problem_detail.xml -->
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:context=".ProblemDetailActivity">
+                android:padding="16dp">
 
+    <!-- Problem TextView -->
     <TextView
             android:id="@+id/problem_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/problem_text"
-            android:layout_margin="16dp" />
+            android:textSize="18sp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:paddingBottom="16dp" />
 
+    <!-- Answer EditText -->
     <EditText
             android:id="@+id/answer_edit_text"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="@string/problem_hint"
+            android:inputType="numberDecimal"
             android:layout_below="@id/problem_text_view"
-            android:layout_margin="16dp" />
+            android:layout_centerHorizontal="true"
+            android:paddingBottom="16dp" />
 
+    <!-- Submit Button -->
     <Button
             android:id="@+id/button_submit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/submit"
             android:layout_below="@id/answer_edit_text"
-            android:layout_margin="16dp" />
+            android:layout_centerHorizontal="true"
+            android:paddingBottom="16dp" />
+
+    <!-- Feedback ImageView -->
+    <ImageView
+            android:id="@+id/feedback_image_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/button_submit"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:visibility="gone" /> <!-- Initially hidden -->
+
 </RelativeLayout>

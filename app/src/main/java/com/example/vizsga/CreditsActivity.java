@@ -12,7 +12,7 @@ public class CreditsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_credits);
 
         WebView webView = findViewById(R.id.webview_credits);
-        webView.getSettings().setJavaScriptEnabled(true); // Enable JavaScript if needed
-        webView.loadUrl("file:///android_asset/credits.html"); // Correct file path
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.loadUrl("file:///android_asset/credits.html");
     }
 }

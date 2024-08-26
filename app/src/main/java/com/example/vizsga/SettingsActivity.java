@@ -20,11 +20,9 @@ public class SettingsActivity extends AppCompatActivity {
 
         RadioGroup languageRadioGroup = findViewById(R.id.radio_group_language);
 
-        // Load saved language preference
         SharedPreferences prefs = getSharedPreferences("AppSettings", MODE_PRIVATE);
-        String language = prefs.getString("language", "en"); // Default to English
+        String language = prefs.getString("language", "en");
 
-        // Check the appropriate RadioButton based on the saved preference
         if ("hu".equals(language)) {
             languageRadioGroup.check(R.id.radio_button_hungarian);
         } else {
@@ -42,15 +40,13 @@ public class SettingsActivity extends AppCompatActivity {
             editor.putString("language", selectedLanguage);
             editor.apply();
 
-            // Update the app language
             updateAppLanguage(selectedLanguage);
 
-            // Restart the app to apply changes
             Intent intent = getPackageManager().getLaunchIntentForPackage(getPackageName());
             if (intent != null) {
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
-                finish(); // Close SettingsActivity
+                finish();
             }
         });
     }

@@ -32,8 +32,8 @@ public class ProblemAdapter extends RecyclerView.Adapter<ProblemAdapter.ProblemV
     @Override
     public void onBindViewHolder(@NonNull ProblemViewHolder holder, int position) {
         Problem problem = problems.get(position);
-        holder.problemTextView.setText(problem.toString()); // Use toString() if that's your method for problem text
-        holder.checkBoxSolved.setChecked(problem.isSolved()); // Bind checkbox state
+        holder.problemTextView.setText(problem.toString());
+        holder.checkBoxSolved.setChecked(problem.isSolved());
 
         // Handle checkbox changes
         holder.checkBoxSolved.setOnCheckedChangeListener((buttonView, isChecked) -> {
@@ -60,7 +60,7 @@ public class ProblemAdapter extends RecyclerView.Adapter<ProblemAdapter.ProblemV
         ProblemViewHolder(View itemView) {
             super(itemView);
             problemTextView = itemView.findViewById(R.id.problem_text);
-            checkBoxSolved = itemView.findViewById(R.id.checkbox_solved); // Add this line
+            checkBoxSolved = itemView.findViewById(R.id.checkbox_solved);
         }
     }
 }

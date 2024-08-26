@@ -1,8 +1,10 @@
 package com.example.vizsga;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +14,7 @@ public class ProblemDetailActivity extends AppCompatActivity {
     private TextView problemTextView;
     private EditText answerEditText;
     private Button submitButton;
+    private ImageView feedbackImageView;
     private String correctAnswer;
 
     @Override
@@ -22,6 +25,7 @@ public class ProblemDetailActivity extends AppCompatActivity {
         problemTextView = findViewById(R.id.problem_text_view);
         answerEditText = findViewById(R.id.answer_edit_text);
         submitButton = findViewById(R.id.button_submit);
+        feedbackImageView = findViewById(R.id.feedback_image_view); // Initialize ImageView
 
         // Retrieve the Problem object passed from MainActivity
         Problem problem = (Problem) getIntent().getSerializableExtra("problem");
@@ -50,8 +54,10 @@ public class ProblemDetailActivity extends AppCompatActivity {
 
                 if (userAnswer.equals(correctAnswer.trim())) {
                     Toast.makeText(this, getString(R.string.correct_answer), Toast.LENGTH_SHORT).show();
+                    feedbackImageView.setImageResource(R.drawable.correct); // Set image for correct answer
                 } else {
                     Toast.makeText(this, getString(R.string.incorrect_answer), Toast.LENGTH_SHORT).show();
+                    feedbackImageView.setImageResource(R.drawable.incorrect); // Set image for incorrect answer
                 }
             } catch (NumberFormatException e) {
                 Toast.makeText(this, "Please enter a valid number.", Toast.LENGTH_SHORT).show();
@@ -59,5 +65,7 @@ public class ProblemDetailActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this, "Answer could not be processed. Please reload the problem.", Toast.LENGTH_SHORT).show();
         }
+
+        feedbackImageView.setVisibility(View.VISIBLE); // Show the image
     }
 }

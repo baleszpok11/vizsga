@@ -3,10 +3,7 @@ package com.example.vizsga;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageButton;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -15,8 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.navigation.NavigationView;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,30 +28,24 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         ImageButton navButton = findViewById(R.id.nav_button);
-        recyclerView = findViewById(R.id.recycler_view); // Initialize RecyclerView
+        recyclerView = findViewById(R.id.recycler_view);
 
-        // Set LayoutManager for RecyclerView
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // Load data and set up RecyclerView adapter
-        JSONUtils.loadProblemsFromUrl(this, problems -> {
+        JSONUtils.loadProblemsFromUrl(problems -> {
             problemAdapter = new ProblemAdapter(problems, problem -> {
-                // Handle problem click event
                 Intent intent = new Intent(MainActivity.this, ProblemDetailActivity.class);
                 intent.putExtra("problem", problem);
                 startActivity(intent);
             });
             recyclerView.setAdapter(problemAdapter);
 
-            // Apply animation after data is loaded and adapter is set
             Animation slideInAnimation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.slide_in_from_top);
             recyclerView.startAnimation(slideInAnimation);
         });
 
-        // Handle the click event of the navigation button
         navButton.setOnClickListener(v -> drawerLayout.openDrawer(GravityCompat.START));
 
-        // Handle item selections from the navigation menu
         navigationView.setNavigationItemSelectedListener(item -> {
             int id = item.getItemId();
             if (id == R.id.nav_settings) {
@@ -70,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
             return true;
         });
 
-        // Set menu item titles programmatically for localization
         setMenuTitles();
     }
 

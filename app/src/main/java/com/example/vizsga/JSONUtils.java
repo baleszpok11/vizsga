@@ -1,6 +1,5 @@
 package com.example.vizsga;
 
-import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 import org.json.JSONArray;
@@ -17,7 +16,7 @@ public class JSONUtils {
 
     private static final String JSON_URL = "https://people.vts.su.ac.rs/~probi/Mobile/vizsga/json2.txt";
 
-    public static void loadProblemsFromUrl(Context context, OnDataLoadedListener listener) {
+    public static void loadProblemsFromUrl(OnDataLoadedListener listener) {
         new FetchDataTask(listener).execute(JSON_URL);
     }
 
@@ -34,23 +33,21 @@ public class JSONUtils {
             List<Problem> problems = new ArrayList<>();
             String json = fetchJsonFromUrl(urls[0]);
 
-            if (json != null) {
-                try {
-                    JSONObject jsonObject = new JSONObject(json);
-                    JSONArray jsonArray = jsonObject.getJSONArray("json2");
+            try {
+                JSONObject jsonObject = new JSONObject(json);
+                JSONArray jsonArray = jsonObject.getJSONArray("json2");
 
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject obj = jsonArray.getJSONObject(i);
-                        int a = obj.getInt("a");
-                        int b = obj.getInt("b");
-                        String op = obj.getString("op");
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject obj = jsonArray.getJSONObject(i);
+                    int a = obj.getInt("a");
+                    int b = obj.getInt("b");
+                    String op = obj.getString("op");
 
-                        Problem problem = new Problem(a, b, op);
-                        problems.add(problem);
-                    }
-                } catch (JSONException e) {
-                    Log.e("JSONUtils", "JSON parsing error", e);
+                    Problem problem = new Problem(a, b, op);
+                    problems.add(problem);
                 }
+            } catch (JSONException e) {
+                Log.e("JSONUtils", "JSON parsing error", e);
             }
 
             return problems;
