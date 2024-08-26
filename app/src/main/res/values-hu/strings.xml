@@ -1,0 +1,11 @@
+<!-- res/values-hu/strings.xml -->
+<resources>
+    <string name="app_name">Matematikai Kvíz</string>
+    <string name="open_drawer">Menzett Nyitás</string>
+    <string name="settings">Beállítások</string>
+    <string name="credits">Kredit</string>
+    <string name="language">Nyelv</string>
+    <string name="english">Angol</string>
+    <string name="hungarian">Magyar</string>
+    <!-- Add more strings as needed -->
+</resources>

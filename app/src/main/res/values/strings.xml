@@ -1,5 +1,11 @@
+<!-- res/values/strings.xml -->
 <resources>
-    <string name="app_name">vizsga</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="app_name">Math Quiz</string>
+    <string name="open_drawer">Open Drawer</string>
+    <string name="settings">Settings</string>
+    <string name="credits">Credits</string>
+    <string name="language">Language</string>
+    <string name="english">English</string>
+    <string name="hungarian">Hungarian</string>
+    <!-- Add more strings as needed -->
 </resources>

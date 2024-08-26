@@ -1,30 +1,54 @@
-package com.example.vizsga;
-
+package com.example.vizsga;// SettingsActivity.java
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.widget.CheckBox;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.Locale;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    private CheckBox likedCheckBox;
+    private RadioGroup languageRadioGroup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        likedCheckBox = findViewById(R.id.checkbox_liked);
+        languageRadioGroup = findViewById(R.id.radio_group_language);
 
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        likedCheckBox.setChecked(prefs.getBoolean("liked", false));
+        // Load saved language preference
+        SharedPreferences prefs = getSharedPreferences("AppSettings", MODE_PRIVATE);
+        String language = prefs.getString("language", "en");
+        if ("hu".equals(language)) {
+            languageRadioGroup.check(R.id.radio_button_hungarian);
+        } else {
+            languageRadioGroup.check(R.id.radio_button_english);
+        }
 
-        likedCheckBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
+        languageRadioGroup.setOnCheckedChangeListener((group, checkedId) -> {
+            String selectedLanguage = "en";
+            if (checkedId == R.id.radio_button_hungarian) {
+                selectedLanguage = "hu";
+            }
+
+            // Save the selected language preference
             SharedPreferences.Editor editor = prefs.edit();
-            editor.putBoolean("liked", isChecked);
+            editor.putString("language", selectedLanguage);
             editor.apply();
+
+            // Update the app language
+            Locale locale = new Locale(selectedLanguage);
+            Locale.setDefault(locale);
+            Configuration config = new Configuration();
+            config.locale = locale;
+            getResources().updateConfiguration(config, getResources().getDisplayMetrics());
+
+            // Restart the activity to apply changes
+            recreate();
         });
     }
-
 }
