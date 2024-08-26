@@ -21,7 +21,7 @@ public class ProblemDetailActivity extends AppCompatActivity {
 
         problemTextView = findViewById(R.id.problem_text_view);
         answerEditText = findViewById(R.id.answer_edit_text);
-        submitButton = findViewById(R.id.submit_button);
+        submitButton = findViewById(R.id.button_submit);
 
         // Retrieve the Problem object passed from MainActivity
         Problem problem = (Problem) getIntent().getSerializableExtra("problem");
@@ -48,10 +48,10 @@ public class ProblemDetailActivity extends AppCompatActivity {
                 double userAnswerDouble = Double.parseDouble(userAnswer);
                 double correctAnswerDouble = Double.parseDouble(correctAnswer.trim());
 
-                if (userAnswerDouble == correctAnswerDouble) {
-                    Toast.makeText(this, "Correct!", Toast.LENGTH_SHORT).show();
+                if (userAnswer.equals(correctAnswer.trim())) {
+                    Toast.makeText(this, getString(R.string.correct_answer), Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(this, "Incorrect. Try again!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, getString(R.string.incorrect_answer), Toast.LENGTH_SHORT).show();
                 }
             } catch (NumberFormatException e) {
                 Toast.makeText(this, "Please enter a valid number.", Toast.LENGTH_SHORT).show();

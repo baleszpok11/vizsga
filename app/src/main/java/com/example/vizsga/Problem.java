@@ -6,6 +6,7 @@ public class Problem implements Serializable {
     private int a;
     private int b;
     private String op;
+    private boolean solved;
 
     public Problem(int a, int b, String op) {
         this.a = a;
@@ -56,7 +57,13 @@ public class Problem implements Serializable {
                 throw new IllegalArgumentException("Unknown operation: " + op);
         }
     }
+    public boolean isSolved() {
+        return solved;
+    }
 
+    public void setSolved(boolean solved) {
+        this.solved = solved;
+    }
     @Override
     public String toString() {
         return a + " " + op + " " + b;

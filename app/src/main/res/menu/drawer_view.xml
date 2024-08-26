@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
             android:id="@+id/nav_settings"
-            android:title="Settings"
-            android:icon="@drawable/ic_settings" />
+            android:icon="@drawable/ic_settings"
+            android:title="@string/settings" />
+
     <item
             android:id="@+id/nav_credits"
-            android:title="Credits"
-            android:icon="@drawable/ic_credits" />
+            android:icon="@drawable/ic_credits"
+            android:title="@string/credits" />
 </menu>

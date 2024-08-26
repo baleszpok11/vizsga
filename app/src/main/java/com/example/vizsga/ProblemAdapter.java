@@ -3,9 +3,12 @@ package com.example.vizsga;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.List;
 
 public class ProblemAdapter extends RecyclerView.Adapter<ProblemAdapter.ProblemViewHolder> {
@@ -29,7 +32,15 @@ public class ProblemAdapter extends RecyclerView.Adapter<ProblemAdapter.ProblemV
     @Override
     public void onBindViewHolder(@NonNull ProblemViewHolder holder, int position) {
         Problem problem = problems.get(position);
-        holder.problemTextView.setText(problem.toString());
+        holder.problemTextView.setText(problem.toString()); // Use toString() if that's your method for problem text
+        holder.checkBoxSolved.setChecked(problem.isSolved()); // Bind checkbox state
+
+        // Handle checkbox changes
+        holder.checkBoxSolved.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            problem.setSolved(isChecked);
+        });
+
+        // Handle item click
         holder.itemView.setOnClickListener(v -> onProblemClickListener.onProblemClick(problem));
     }
 
@@ -44,10 +55,12 @@ public class ProblemAdapter extends RecyclerView.Adapter<ProblemAdapter.ProblemV
 
     static class ProblemViewHolder extends RecyclerView.ViewHolder {
         TextView problemTextView;
+        CheckBox checkBoxSolved;
 
         ProblemViewHolder(View itemView) {
             super(itemView);
             problemTextView = itemView.findViewById(R.id.problem_text);
+            checkBoxSolved = itemView.findViewById(R.id.checkbox_solved); // Add this line
         }
     }
 }

@@ -1,24 +1,39 @@
-<!-- res/layout/activity_settings.xml -->
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                tools:context=".SettingsActivity">
 
+    <!-- Title -->
+    <TextView
+            android:id="@+id/title_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@android:color/black"
+            android:padding="16dp"
+            android:text="@string/settings"
+            android:gravity="center"/>
+
+    <!-- Settings content -->
     <RadioGroup
             android:id="@+id/radio_group_language"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_below="@id/title_text_view"
+            android:padding="16dp">
 
         <RadioButton
                 android:id="@+id/radio_button_english"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/english" />
+                android:text="@string/english"/>
 
         <RadioButton
                 android:id="@+id/radio_button_hungarian"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/hungarian" />
+                android:text="@string/hungarian"/>
     </RadioGroup>
 </RelativeLayout>

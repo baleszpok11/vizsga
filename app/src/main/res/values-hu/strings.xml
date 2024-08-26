@@ -3,9 +3,15 @@
     <string name="app_name">Matematikai Kvíz</string>
     <string name="open_drawer">Menzett Nyitás</string>
     <string name="settings">Beállítások</string>
-    <string name="credits">Kredit</string>
+    <string name="credits">Készítő</string>
     <string name="language">Nyelv</string>
     <string name="english">Angol</string>
     <string name="hungarian">Magyar</string>
-    <!-- Add more strings as needed -->
+    <string name="splash_text">Üdvözöljük a Matematikai Kvízben</string>
+    <string name="submit">Küldés</string>
+    <string name="problem_hint">Írja be a választ:</string>
+    <string name="problem_text">Feladat:</string>
+    <string name="incorrect_answer">Helytelen. Próbálkozzon újra!</string>
+    <string name="correct_answer">Helyes!</string>
+    <!-- Add any other strings as needed -->
 </resources>

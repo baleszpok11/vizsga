@@ -7,5 +7,11 @@
     <string name="language">Language</string>
     <string name="english">English</string>
     <string name="hungarian">Hungarian</string>
-    <!-- Add more strings as needed -->
+    <string name="splash_text">Welcome to Math Quiz</string>
+    <string name="submit">Submit</string>
+    <string name="problem_hint">Enter your answer:</string>
+    <string name="problem_text">Problem:</string>
+    <string name="incorrect_answer">Incorrect. Try again!</string>
+    <string name="correct_answer">Correct!</string>
+    <!-- Add any other strings as needed -->
 </resources>

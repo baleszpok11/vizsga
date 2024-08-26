@@ -12,25 +12,35 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+        <!-- Title -->
+        <TextView
+                android:id="@+id/title_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textColor="@android:color/black"
+                android:padding="16dp"
+                android:text="@string/app_name"
+                android:gravity="center"
+                android:layout_alignParentTop="true"/>
+
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="16dp"
                 android:clipToPadding="false"
-                android:scrollbars="vertical" />
+                android:scrollbars="vertical"
+                android:layout_below="@id/title_text_view"/>
 
-        <!-- Adjust the position of the ImageButton to ensure it's not overlapping -->
         <ImageButton
                 android:id="@+id/nav_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginStart="0dp"
                 android:contentDescription="@string/open_drawer"
-                android:src="@drawable/ic_menu"
-                android:background="?attr/selectableItemBackground" />
+                android:src="@drawable/ic_menu"/>
     </RelativeLayout>
 
     <!-- Sidebar menu -->
@@ -40,5 +50,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:fitsSystemWindows="true"
-            app:menu="@menu/drawer_view" />
+            app:menu="@menu/drawer_view">
+    </com.google.android.material.navigation.NavigationView>
+
 </androidx.drawerlayout.widget.DrawerLayout>

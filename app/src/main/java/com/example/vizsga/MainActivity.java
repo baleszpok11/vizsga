@@ -2,6 +2,7 @@ package com.example.vizsga;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
@@ -77,5 +78,14 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        // Set menu item titles programmatically for localization
+        setMenuTitles();
+    }
+
+    private void setMenuTitles() {
+        Menu menu = navigationView.getMenu();
+        menu.findItem(R.id.nav_settings).setTitle(R.string.settings);
+        menu.findItem(R.id.nav_credits).setTitle(R.string.credits);
     }
 }
